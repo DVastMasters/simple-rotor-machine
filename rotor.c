@@ -34,10 +34,25 @@ void printRotor(unsigned char* arr)
     }
 }
 
+typedef struct
+{
+    /* STORE THE CURRENT PERMUTATION OF THE ROTOR */
+    unsigned char currentState[256];
+    /* STORE THE KEY TO INITIALIZE THE ROTOR (0-255) */
+    unsigned char key[256];
+    /* k = THE NUMBER OF CIPHERS NECESSARY TO ROTATE THIS ROTOR (1-4,294,967,295) */
+    unsigned int swapAfterQttCipher;
+    /* l = THE NUMBER OF ROTATIONS MADE AT EVERY ROTATION (0-255) */
+    unsigned char qttPosToRotate;
+    /* STORE THE CURRENT NUMBER OF ROTATIONS */
+    int qttPosRotated;
+    /* STORE ALL POSITIONS SWAPED AT FIRST PERMUTATION */
+    unsigned char positionsSwaped[256];
+} rotor;
 
 
 int main(int argc, char *argv[]){
 
-   
+
     return 0;
 }
