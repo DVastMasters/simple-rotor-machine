@@ -157,6 +157,53 @@ int main(int argc, char *argv[]){
     outputFileName = argv[currentArg+(2*qttRotors)+1];
 
 
+    FILE* inputFile = fopen(inputFileName, "rb");
+    if(inputFile==NULL)
+    {
+        printf("\n\nInput file doesn't exists.");
+        return 3;
+    }
+    FILE* outputFile = fopen(outputFileName, "w+b");
     
+    int byteRead = fgetc(inputFile);
+    unsigned char byteToWrite;
+    int qttBytesCiphered = 0;
+    while(byteRead!=EOF)
+    {
+        qttBytesCiphered++;
+        //printf("\n\n--- NEW ITERATION TO CIPHER OR DECIPHER THE CHAR: %c (%d) ---", byteRead, byteRead);
+        byteToWrite = byteRead;
+        if(mode == CIPHER)
+        {
+            for(int i=0; i<qttRotors; i++)
+            {
+                byteToWrite = rotors[i].currentState[(byteToWrite + rotors[i].qttPosRotated) % 256];
+                //printf("\n Rotor %d (Qtt Pos Rotated: %d; swapAfterQttCipher: %d; intToWrite: %d; charToWrite: %c", i+1, rotors[i].qttPosRotated, rotors[i].swapAfterQttCipher, byteToWrite,  byteToWrite);
+                if((qttBytesCiphered % rotors[i].swapAfterQttCipher) == 0)
+                {
+                    rotors[i].qttPosRotated += rotors[i].qttPosToRotate;
+                }
+            }
+        }
+        else
+        {
+            for(int i=qttRotors-1; i>=0; i--)
+            {
+                byteToWrite = (rotors[i].currentState[byteToWrite] - rotors[i].qttPosRotated) % 256;
+                //printf("\n Rotor %d (Qtt Pos Rotated: %d; swapAfterQttCipher: %d; intToWrite: %d; charToWrite: %c", i+1, rotors[i].qttPosRotated, rotors[i].swapAfterQttCipher, byteToWrite, byteToWrite);
+                if((qttBytesCiphered % rotors[i].swapAfterQttCipher) == 0)
+                {
+                    rotors[i].qttPosRotated += rotors[i].qttPosToRotate;
+                }
+            }
+        }
+
+        fputc(byteToWrite, outputFile);
+        byteRead = fgetc(inputFile);
+    }
+
+    fclose(inputFile);
+    fclose(outputFile);
+
     return 0;
 }
