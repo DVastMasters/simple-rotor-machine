@@ -50,6 +50,18 @@ typedef struct
     unsigned char positionsSwaped[256];
 } rotor;
 
+void permutateRotorToCipher(unsigned char* currentState, unsigned char* key, unsigned char* positionsSwaped)
+{
+    int swapPosition = 0;
+    for (int i=0; i<256; i++)
+    {
+        swapPosition = (swapPosition +
+        currentState[i] +  key[i % strlen(key)]) % 256;
+        positionsSwaped[i] = swapPosition;
+        swap(&currentState[i], &currentState[swapPosition]);
+    }
+}
+
 
 int main(int argc, char *argv[]){
 
