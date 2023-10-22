@@ -62,6 +62,18 @@ void permutateRotorToCipher(unsigned char* currentState, unsigned char* key, uns
     }
 }
 
+void permutateRotorToDecipher(unsigned char* currentState, unsigned char* positionsSwaped)
+{
+    initializeRotor(currentState);
+    int positionToSwap;
+    for (int i=255; i>=0; i--)
+    {
+        positionToSwap = positionsSwaped[i];
+        swap(&currentState[i], &currentState[positionToSwap]);
+    }
+}
+
+
 
 int main(int argc, char *argv[]){
 
