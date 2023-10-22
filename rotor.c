@@ -56,7 +56,7 @@ void permutateRotorToCipher(unsigned char* currentState, unsigned char* key, uns
     for (int i=0; i<256; i++)
     {
         swapPosition = (swapPosition +
-        currentState[i] +  key[i % strlen(key)]) % 256;
+        currentState[i] +  key[i % strlen((char *)key)]) % 256;
         positionsSwaped[i] = swapPosition;
         swap(&currentState[i], &currentState[swapPosition]);
     }
@@ -110,7 +110,7 @@ int main(int argc, char *argv[]){
     unsigned char qttPosToRotate = 0;
     for(int i=0; i<qttRotors; i++)
     {
-        strncpy(rotors[i].key, argv[currentArg], 256);
+        strncpy((char *)rotors[i].key, argv[currentArg], 256);
         swapAfterQttCipher = strtol(argv[currentArg + qttRotors + i], NULL, 10);
         if(swapAfterQttCipher > pow(10, 9))
         {
