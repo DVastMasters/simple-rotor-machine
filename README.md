@@ -19,6 +19,7 @@
    - output = Name of the output file to be created (if the mode is C, then the output is the ciphered content. Otherwise, the output is the deciphered content);
 
    ##### Example of usage with the example carta.txt file:   
+   `.\rotor.exe C 5 GIROSCOPIO BAUNILHA FEIJAO ARROZ BATATA 1000000000 255 1 13 25 26 1 3 0 0 carta.txt carta.bin`
    `.\rotor.exe D 5 GIROSCOPIO BAUNILHA FEIJAO ARROZ BATATA 1000000000 255 1 13 25 26 1 3 0 0 carta.bin decodificado.txt`
    
 #### To Do:
