@@ -13,8 +13,8 @@
    - mode = C to Cipher or D to Decipher;
    - n = Quantity of rotors;
    - phrase1..n = Key phrase to initialize the current rotor;
-   - k1..n = Number of ciphers that are necessary be made to rotate the current rotor;
-   - l1..n = Number of positions that the rotor will be rotated at every k pos;
+   - k1..n = Number of ciphers that are necessary to rotate the current rotor;
+   - l1..n = Number of positions to rotate the rotor at every k ciphers;
    - input = input file name (can be whatever: images, pdfs, videos, mp3, plaintext, or just binaries .bin);
    - output = Name of the output file to be created (if the mode is C, then the output is the ciphered content. Otherwise, the output is the deciphered content);
 
