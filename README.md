@@ -5,10 +5,10 @@
 #### How to use:
 
 1. Compile:
-  `gcc -std=c17 -pedantic -Wall -o rotor.exe rotor.c`
+  `make run`
 
 2. Run
-   `./rotor mode n phrase1 phrase2 phrasen k1 l1 k2 l2 kn ln input output`
+   `./rotor.exe mode n phrase1 phrase2 phrasen k1 l1 k2 l2 kn ln input output`
 
    - mode = C to Cipher or D to Decipher;
    - n = Quantity of rotors;
@@ -19,12 +19,20 @@
    - output = Name of the output file to be created (if the mode is C, then the output is the ciphered content. Otherwise, the output is the deciphered content);
 
    ##### Example of usage with the example carta.txt file:   
-   `.\rotor.exe C 5 GIROSCOPIO BAUNILHA FEIJAO ARROZ BATATA 1000000000 255 1 13 25 26 1 3 0 0 carta.txt carta.bin`
-
-   `.\rotor.exe D 5 GIROSCOPIO BAUNILHA FEIJAO ARROZ BATATA 1000000000 255 1 13 25 26 1 3 0 0 carta.bin decodificado.txt`
+   `./rotor.exe C 5 GIROSCOPIO BAUNILHA FEIJAO ARROZ BATATA 1000000000 255 1 13 25 26 1 3 0 0 carta.txt carta.bin`
    
+   Otherwise,
+
+   `make run_ex1`
+
+   `./rotor.exe D 5 GIROSCOPIO BAUNILHA FEIJAO ARROZ BATATA 1000000000 255 1 13 25 26 1 3 0 0 carta.bin decodificado.txt`
+	
+	Otherwise,
+				   
+   `make run_ex2`
+
 #### To Do:
-1. [ ] Refactor the code to split into more files and functions;
+1. [X] Refactor the code to split into more files and functions;
 2. [ ] Improve README;
 3. [ ] Comments;
 4. [ ] Tests.
